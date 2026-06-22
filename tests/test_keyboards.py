@@ -1,3 +1,6 @@
+import inspect
+
+from app.bot import runner
 from app.bot.keyboards import inline_keyboard, main_reply_keyboard
 from app.core.menu import main_menu_buttons
 from app.core.types import Button
@@ -21,3 +24,10 @@ def test_main_reply_keyboard_contains_all_main_menu_actions():
     assert markup.resize_keyboard is True
     assert markup.is_persistent is True
     assert markup.one_time_keyboard is False
+
+
+def test_crisis_paths_keep_persistent_reply_keyboard_instead_of_inline_markup():
+    source = inspect.getsource(runner.create_dispatcher)
+
+    assert "inline_keyboard(reply.buttons)" not in source
+    assert source.count("reply_markup=main_reply_keyboard()") >= 8

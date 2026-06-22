@@ -84,7 +84,7 @@ def create_dispatcher() -> Dispatcher:
         await cleanup_chat_context(message)
         set_chat_mode(message.chat.id, "sos")
         reply = crisis_reply("ru")
-        await send_clean_text(message, reply.text, reply_markup=inline_keyboard(reply.buttons))
+        await send_clean_text(message, reply.text, reply_markup=main_reply_keyboard())
 
     @dp.callback_query(F.data == "accept_rules")
     async def accept_rules(callback: CallbackQuery) -> None:
@@ -105,7 +105,7 @@ def create_dispatcher() -> Dispatcher:
         reply = crisis_reply("ru")
         if callback.message:
             set_chat_mode(callback.message.chat.id, "sos")
-            await send_clean_text(callback.message, reply.text, reply_markup=inline_keyboard(reply.buttons))
+            await send_clean_text(callback.message, reply.text, reply_markup=main_reply_keyboard())
 
     @dp.callback_query(F.data == "talk")
     async def talk_callback(callback: CallbackQuery) -> None:
@@ -215,7 +215,7 @@ def create_dispatcher() -> Dispatcher:
             return
         if is_crisis_text(text):
             reply = crisis_reply("ru")
-            await send_text_and_voice(message, reply.text, reply_markup=inline_keyboard(reply.buttons))
+            await send_text_and_voice(message, reply.text, reply_markup=main_reply_keyboard())
             return
         answer = await generate_live_support_reply(message, text, "ru")
         if answer:
@@ -228,9 +228,9 @@ def create_dispatcher() -> Dispatcher:
         if is_crisis_text(text):
             reply = crisis_reply("ru")
             if is_talk_mode(message.chat.id):
-                await send_text_and_voice(message, reply.text, reply_markup=inline_keyboard(reply.buttons))
+                await send_text_and_voice(message, reply.text, reply_markup=main_reply_keyboard())
             else:
-                await send_clean_text(message, reply.text, reply_markup=inline_keyboard(reply.buttons))
+                await send_clean_text(message, reply.text, reply_markup=main_reply_keyboard())
             return
         if is_talk_mode(message.chat.id):
             answer = await generate_live_support_reply(message, text, "ru")
