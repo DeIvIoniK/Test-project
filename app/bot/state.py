@@ -2,6 +2,7 @@ from collections import defaultdict
 
 _CHAT_MODES: dict[int, str] = defaultdict(lambda: "menu")
 _SUPPORT_DIALOGUE_MODES = {"talk", "sos"}
+_VOICE_MODES = {"talk", "sos"}
 
 
 def set_chat_mode(chat_id: int, mode: str) -> None:
@@ -18,3 +19,7 @@ def is_talk_mode(chat_id: int) -> bool:
 
 def is_support_dialogue_mode(chat_id: int) -> bool:
     return get_chat_mode(chat_id) in _SUPPORT_DIALOGUE_MODES
+
+
+def mode_accepts_voice(chat_id: int) -> bool:
+    return get_chat_mode(chat_id) in _VOICE_MODES

@@ -7,7 +7,7 @@ from aiogram.types import BotCommand, CallbackQuery, FSInputFile, Message
 
 from app.bot.keyboards import inline_keyboard, main_reply_keyboard
 from app.bot.session import cleanup_chat_context, prune_chat_history, remember_bot_message
-from app.bot.state import is_support_dialogue_mode, is_talk_mode, set_chat_mode
+from app.bot.state import is_support_dialogue_mode, is_talk_mode, mode_accepts_voice, set_chat_mode
 from app.core.crisis import crisis_reply, is_crisis_text
 from app.core.onboarding import onboarding_buttons, onboarding_start_text, rules_text
 from app.services.literature import literature_reply
@@ -103,6 +103,28 @@ def create_dispatcher() -> Dispatcher:
         reply = crisis_reply("ru")
         if callback.message:
             await enter_sos_dialogue(callback.message)
+
+    @dp.callback_query(F.data == "help_me")
+    async def help_me_callback(callback: CallbackQuery) -> None:
+        await callback.answer()
+        await cleanup_chat_context(callback.message)
+        if callback.message:
+            set_chat_mode(callback.message.chat.id, "help_me")
+            await send_clean_text(
+                callback.message,
+                "Выбери ближайшее: выговориться, риск сорваться, связаться с человеком или найти группу. Можно нажать кнопку снизу.",
+                reply_markup=main_reply_keyboard(),
+            )
+
+    @dp.message(F.text.casefold() == "мне нужна помощь")
+    async def help_me_message_button(message: Message) -> None:
+        await cleanup_chat_context(message)
+        set_chat_mode(message.chat.id, "help_me")
+        await send_clean_text(
+            message,
+            "Выбери ближайшее: выговориться, риск сорваться, связаться с человеком или найти группу. Можно нажать кнопку снизу.",
+            reply_markup=main_reply_keyboard(),
+        )
 
     async def enter_sos_dialogue(message: Message) -> None:
         set_chat_mode(message.chat.id, "sos")
@@ -204,19 +226,54 @@ def create_dispatcher() -> Dispatcher:
             return
         await send_clean_text(message, literature_reply(query, "ru"), parse_mode="Markdown", reply_markup=main_reply_keyboard())
 
+    MENU_SECTION_TEXTS = {
+        "groups": "Пока поиск групп в разработке. Сейчас можно открыть литературу, выговориться ИИ или связаться с человеком.",
+        "audio": "Спикерские / аудио добавим отдельным разделом. Сейчас можно попросить литературу или поддержку по теме.",
+        "sobriety": "Дни трезвости скоро добавим: дата начала, счётчик и поддержка после срыва. Пока я могу поддержать тебя здесь.",
+        "helper": "Раздел помощников скоро будет с анкетой: доступность, темы помощи, формат связи и статус. Пока просто зафиксировал интерес помогать.",
+        "donate": "Проект некоммерческий. Раздел поддержки проекта добавим позже.",
+        "about": "Это некоммерческий ИИ‑помощник поддержки в выздоровлении. Я не врач, не психолог и не экстренная служба; могу выслушать и помочь с ближайшим безопасным шагом.",
+        "settings": "Настройки скоро будут: язык, голос, город, часовой пояс, данные и приватность.",
+    }
+    MENU_TEXT_TO_MODE = {
+        "найти группу": "groups",
+        "спикерские / аудио": "audio",
+        "дни трезвости": "sobriety",
+        "помочь другому": "helper",
+        "поддержать проект": "donate",
+        "о проекте": "about",
+        "настройки": "settings",
+    }
+
+    async def enter_menu_section(message: Message, mode: str) -> None:
+        set_chat_mode(message.chat.id, mode)
+        await send_clean_text(message, MENU_SECTION_TEXTS[mode], reply_markup=main_reply_keyboard())
+
+    @dp.callback_query(F.data.in_(set(MENU_SECTION_TEXTS)))
+    async def menu_section_callback(callback: CallbackQuery) -> None:
+        await callback.answer()
+        await cleanup_chat_context(callback.message)
+        if callback.message:
+            await enter_menu_section(callback.message, callback.data)
+
+    @dp.message(F.text.casefold().in_(set(MENU_TEXT_TO_MODE)))
+    async def menu_section_message_button(message: Message) -> None:
+        await cleanup_chat_context(message)
+        await enter_menu_section(message, MENU_TEXT_TO_MODE[(message.text or "").casefold()])
+
     @dp.callback_query()
     async def any_callback(callback: CallbackQuery) -> None:
         await callback.answer()
         await cleanup_chat_context(callback.message)
         if callback.message:
             set_chat_mode(callback.message.chat.id, "menu")
-            await send_clean_text(callback.message, "Этот раздел скоро добавим поэтапно. Пока можешь написать мне обычным сообщением.")
+            await send_clean_text(callback.message, "Этот раздел скоро добавим поэтапно. Пока можешь написать мне обычным сообщением.", reply_markup=main_reply_keyboard())
 
     @dp.message(F.voice)
     async def voice_message(message: Message) -> None:
         await cleanup_chat_context(message)
-        if not is_support_dialogue_mode(message.chat.id):
-            await send_clean_text(message, "Голосом можно ответить в разделах «Просто выговориться» и «Мне плохо / хочу сорваться». Нажми нужную кнопку в меню.", reply_markup=main_reply_keyboard())
+        if not mode_accepts_voice(message.chat.id):
+            await send_clean_text(message, "Голосовые сообщения работают только в разделах «Просто выговориться» и «Мне плохо / хочу сорваться». Нажми нужную кнопку в меню.", reply_markup=main_reply_keyboard())
             return
         text = await transcribe_telegram_voice(message.bot, message.voice)
         if not text:

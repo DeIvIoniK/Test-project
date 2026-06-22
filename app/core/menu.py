@@ -16,12 +16,13 @@ def main_menu_buttons(lang: str = "ru", is_admin: bool = False) -> list[list[But
         return buttons
 
     buttons = [
-        [Button("Просто выговориться", "talk"), Button("Мне плохо / хочу сорваться", "sos")],
-        [Button("Связаться с человеком", "contact"), Button("Я новичок", "newcomer")],
-        [Button("Найти группу", "groups"), Button("Литература", "literature")],
-        [Button("Спикерские / аудио", "audio"), Button("Дни трезвости", "sobriety")],
-        [Button("Помочь другому", "helper"), Button("Поддержать проект", "donate")],
-        [Button("О проекте", "about"), Button("Настройки", "settings")],
+        [Button("Мне нужна помощь", "help_me"), Button("Просто выговориться", "talk")],
+        [Button("Мне плохо / хочу сорваться", "sos"), Button("Связаться с человеком", "contact")],
+        [Button("Я новичок", "newcomer"), Button("Найти группу", "groups")],
+        [Button("Литература", "literature"), Button("Спикерские / аудио", "audio")],
+        [Button("Дни трезвости", "sobriety"), Button("Помочь другому", "helper")],
+        [Button("Поддержать проект", "donate"), Button("О проекте", "about")],
+        [Button("Настройки", "settings")],
     ]
     if is_admin:
         buttons.append([Button("Админ", "admin")])

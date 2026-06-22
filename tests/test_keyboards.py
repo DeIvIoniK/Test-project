@@ -31,3 +31,19 @@ def test_crisis_paths_keep_persistent_reply_keyboard_instead_of_inline_markup():
 
     assert "inline_keyboard(reply.buttons)" not in source
     assert source.count("reply_markup=main_reply_keyboard()") >= 8
+
+
+def test_every_placeholder_menu_section_sends_context_buttons():
+    source = inspect.getsource(runner.create_dispatcher)
+
+    for button_text in [
+        "найти группу",
+        "спикерские / аудио",
+        "дни трезвости",
+        "помочь другому",
+        "поддержать проект",
+        "о проекте",
+        "настройки",
+    ]:
+        assert button_text in source
+
