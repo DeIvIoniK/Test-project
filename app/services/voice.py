@@ -8,9 +8,9 @@ from aiogram.types import Voice
 from faster_whisper import WhisperModel
 
 _MODEL: WhisperModel | None = None
-DEFAULT_TTS_VOICE = "ru-RU-DmitryNeural"
-DEFAULT_TTS_RATE = "-5%"
-DEFAULT_TTS_PITCH = "-3Hz"
+DEFAULT_TTS_VOICE = "ru-RU-SvetlanaNeural"
+DEFAULT_TTS_RATE = "-12%"
+DEFAULT_TTS_PITCH = "-6Hz"
 
 
 def _get_model() -> WhisperModel:

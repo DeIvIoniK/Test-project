@@ -9,7 +9,6 @@ from app.bot.keyboards import inline_keyboard, main_reply_keyboard
 from app.bot.session import cleanup_chat_context, prune_chat_history, remember_bot_message
 from app.bot.state import is_talk_mode, set_chat_mode
 from app.core.crisis import crisis_reply, is_crisis_text
-from app.core.menu import main_menu_buttons
 from app.core.onboarding import onboarding_buttons, onboarding_start_text, rules_text
 from app.services.literature import literature_reply
 from app.services.llm import LLMReplyError, generate_support_reply, llm_is_configured
@@ -76,10 +75,11 @@ def create_dispatcher() -> Dispatcher:
         await send_clean_text(
             message,
             "Выбери, что сейчас ближе:",
-            reply_markup=inline_keyboard(main_menu_buttons("ru", is_admin=False)),
+            reply_markup=main_reply_keyboard(),
         )
 
     @dp.message(Command("sos"))
+    @dp.message(F.text.casefold() == "мне плохо / хочу сорваться")
     async def sos(message: Message) -> None:
         await cleanup_chat_context(message)
         set_chat_mode(message.chat.id, "sos")
@@ -95,7 +95,7 @@ def create_dispatcher() -> Dispatcher:
             await send_clean_text(
                 callback.message,
                 "Хорошо. Я рядом. Можешь просто написать, что сейчас происходит, или открыть меню.",
-                reply_markup=inline_keyboard(main_menu_buttons("ru", is_admin=False)),
+                reply_markup=main_reply_keyboard(),
             )
 
     @dp.callback_query(F.data == "sos")
@@ -112,35 +112,61 @@ def create_dispatcher() -> Dispatcher:
         await callback.answer()
         await cleanup_chat_context(callback.message)
         if callback.message:
-            set_chat_mode(callback.message.chat.id, "talk")
-            opening = await generate_live_support_reply(
-                callback.message,
-                "Пользователь открыл раздел «Просто выговориться». Мягко пригласи его написать или сказать голосом, что сейчас тяжелее всего.",
-            )
-            if opening:
-                await send_text_and_voice(callback.message, opening)
+            await enter_talk_mode(callback.message)
+
+    @dp.message(F.text.casefold() == "просто выговориться")
+    async def talk_message_button(message: Message) -> None:
+        await cleanup_chat_context(message)
+        await enter_talk_mode(message)
+
+    async def enter_talk_mode(message: Message) -> None:
+        set_chat_mode(message.chat.id, "talk")
+        opening = await generate_live_support_reply(
+            message,
+            "Пользователь открыл раздел «Просто выговориться». Мягко пригласи его написать или сказать голосом, что сейчас тяжелее всего.",
+        )
+        if opening:
+            await send_text_and_voice(message, opening, reply_markup=main_reply_keyboard())
 
     @dp.callback_query(F.data == "contact")
     async def contact_callback(callback: CallbackQuery) -> None:
         await callback.answer()
         await cleanup_chat_context(callback.message)
         if callback.message:
-            set_chat_mode(callback.message.chat.id, "contact")
-            await send_clean_text(
-                callback.message,
-                "Пока живые помощники ещё не подключены. Сейчас я могу остаться рядом и помочь тебе сделать ближайший безопасный шаг.",
-            )
+            await enter_contact_mode(callback.message)
+
+    @dp.message(F.text.casefold() == "связаться с человеком")
+    async def contact_message_button(message: Message) -> None:
+        await cleanup_chat_context(message)
+        await enter_contact_mode(message)
+
+    async def enter_contact_mode(message: Message) -> None:
+        set_chat_mode(message.chat.id, "contact")
+        await send_clean_text(
+            message,
+            "Пока живые помощники ещё не подключены. Сейчас я могу остаться рядом и помочь тебе сделать ближайший безопасный шаг.",
+            reply_markup=main_reply_keyboard(),
+        )
 
     @dp.callback_query(F.data == "newcomer")
     async def newcomer_callback(callback: CallbackQuery) -> None:
         await callback.answer()
         await cleanup_chat_context(callback.message)
         if callback.message:
-            set_chat_mode(callback.message.chat.id, "newcomer")
-            await send_clean_text(
-                callback.message,
-                "Если ты новичок: можно просто прийти на группу, слушать и не говорить, если не хочется. Спонсор — это человек с опытом выздоровления, который помогает идти по шагам.",
-            )
+            await enter_newcomer_mode(callback.message)
+
+    @dp.message(F.text.casefold() == "я новичок")
+    async def newcomer_message_button(message: Message) -> None:
+        await cleanup_chat_context(message)
+        await enter_newcomer_mode(message)
+
+    async def enter_newcomer_mode(message: Message) -> None:
+        set_chat_mode(message.chat.id, "newcomer")
+        await send_clean_text(
+            message,
+            "Если ты новичок: можно просто прийти на группу, слушать и не говорить, если не хочется. Спонсор — это человек с опытом выздоровления, который помогает идти по шагам.",
+            reply_markup=main_reply_keyboard(),
+        )
 
     @dp.callback_query(F.data == "literature")
     async def literature_callback(callback: CallbackQuery) -> None:
@@ -154,13 +180,20 @@ def create_dispatcher() -> Dispatcher:
             )
 
     @dp.message(Command("literature"))
+    @dp.message(F.text.casefold() == "литература")
     async def literature_command(message: Message) -> None:
         await cleanup_chat_context(message)
-        query = (message.text or "").replace("/literature", "", 1).strip()
+        text = message.text or ""
+        query = text.replace("/literature", "", 1).strip() if text.startswith("/literature") else ""
         if not query:
-            await send_clean_text(message, "Напиши после команды, что найти. Например: `/literature Step One`", parse_mode="Markdown")
+            await send_clean_text(
+                message,
+                "Можешь спросить про шаг, традицию, тягу, спонсора или группу — я найду опору в литературе АА.",
+                reply_markup=main_reply_keyboard(),
+            )
+            set_chat_mode(message.chat.id, "literature")
             return
-        await send_clean_text(message, literature_reply(query, "ru"), parse_mode="Markdown")
+        await send_clean_text(message, literature_reply(query, "ru"), parse_mode="Markdown", reply_markup=main_reply_keyboard())
 
     @dp.callback_query()
     async def any_callback(callback: CallbackQuery) -> None:
@@ -204,7 +237,7 @@ def create_dispatcher() -> Dispatcher:
             if answer:
                 await send_text_and_voice(message, answer)
             return
-        await send_clean_text(message, "Открой /menu и выбери нужный раздел. Для живого голосового общения выбери «Просто выговориться».")
+        await send_clean_text(message, "Открой /menu и выбери нужный раздел. Для живого голосового общения выбери «Просто выговориться».", reply_markup=main_reply_keyboard())
 
     return dp
 

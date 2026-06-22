@@ -3,6 +3,13 @@ from aiogram.types import InlineKeyboardButton, InlineKeyboardMarkup, ReplyKeybo
 from app.core.types import Button
 
 
+MAIN_REPLY_ROWS = [
+    ["Просто выговориться", "Мне плохо / хочу сорваться"],
+    ["Связаться с человеком", "Я новичок"],
+    ["Литература", "Меню"],
+]
+
+
 def inline_keyboard(buttons: list[list[Button]]) -> InlineKeyboardMarkup:
     return InlineKeyboardMarkup(
         inline_keyboard=[
@@ -20,7 +27,8 @@ def inline_keyboard(buttons: list[list[Button]]) -> InlineKeyboardMarkup:
 
 def main_reply_keyboard() -> ReplyKeyboardMarkup:
     return ReplyKeyboardMarkup(
-        keyboard=[[KeyboardButton(text="Меню")]],
+        keyboard=[[KeyboardButton(text=label) for label in row] for row in MAIN_REPLY_ROWS],
         resize_keyboard=True,
         is_persistent=True,
+        one_time_keyboard=False,
     )

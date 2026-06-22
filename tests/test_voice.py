@@ -13,7 +13,7 @@ async def test_text_to_speech_creates_audio_file():
         path.unlink(missing_ok=True)
 
 
-def test_default_tts_voice_is_slower_and_softer():
-    assert DEFAULT_TTS_VOICE == "ru-RU-DmitryNeural"
-    assert DEFAULT_TTS_RATE == "-5%"
-    assert DEFAULT_TTS_PITCH == "-3Hz"
+def test_default_tts_voice_is_softer_female_voice():
+    assert DEFAULT_TTS_VOICE == "ru-RU-SvetlanaNeural"
+    assert DEFAULT_TTS_RATE == "-12%"
+    assert DEFAULT_TTS_PITCH == "-6Hz"
