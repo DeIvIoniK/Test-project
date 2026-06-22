@@ -1,0 +1,402 @@
+[
+  {
+    "id": "bigbook_titlepage",
+    "title": "01. Title Page - (pp. iii)",
+    "url": "https://www.aa.org/sites/default/files/2021-11/en_bigbook_titlepage.pdf",
+    "source": "Alcoholics Anonymous World Services",
+    "language": "en",
+    "collection": "The Big Book"
+  },
+  {
+    "id": "bigbook_copyright",
+    "title": "02. Copyright Information - (pp. ii)",
+    "url": "https://www.aa.org/sites/default/files/2021-11/en_bigbook_copyright.pdf",
+    "source": "Alcoholics Anonymous World Services",
+    "language": "en",
+    "collection": "The Big Book"
+  },
+  {
+    "id": "bigbook_contents",
+    "title": "03. Contents (pp. v-x)",
+    "url": "https://www.aa.org/sites/default/files/2021-11/en_bigbook_contents.pdf",
+    "source": "Alcoholics Anonymous World Services",
+    "language": "en",
+    "collection": "The Big Book"
+  },
+  {
+    "id": "bigbook_preface",
+    "title": "04. Preface - (pp. xi-xii)",
+    "url": "https://www.aa.org/sites/default/files/2021-11/en_bigbook_preface.pdf",
+    "source": "Alcoholics Anonymous World Services",
+    "language": "en",
+    "collection": "The Big Book"
+  },
+  {
+    "id": "bigbook_foreword_first",
+    "title": "05. Foreword to First Edition - (pp. xiii-xiv)",
+    "url": "https://www.aa.org/sites/default/files/2021-11/en_bigbook_forewordfirstedition.pdf",
+    "source": "Alcoholics Anonymous World Services",
+    "language": "en",
+    "collection": "The Big Book"
+  },
+  {
+    "id": "bigbook_foreword_second",
+    "title": "06. Foreword to Second Edition - (pp. xv-xxi)",
+    "url": "https://www.aa.org/sites/default/files/2021-11/en_bigbook_forewordsecondedition.pdf",
+    "source": "Alcoholics Anonymous World Services",
+    "language": "en",
+    "collection": "The Big Book"
+  },
+  {
+    "id": "bigbook_foreword_third",
+    "title": "07. Foreword to Third Edition - (pp. xxii)",
+    "url": "https://www.aa.org/sites/default/files/2021-11/en_bigbook_forewordthirdedition.pdf",
+    "source": "Alcoholics Anonymous World Services",
+    "language": "en",
+    "collection": "The Big Book"
+  },
+  {
+    "id": "bigbook_foreword_fourth",
+    "title": "08. Foreword to Fourth Edition - (pp. xxiii-xxiv)",
+    "url": "https://www.aa.org/sites/default/files/2021-11/en_bigbook_forewordfourthedition.pdf",
+    "source": "Alcoholics Anonymous World Services",
+    "language": "en",
+    "collection": "The Big Book"
+  },
+  {
+    "id": "bigbook_doctors_opinion",
+    "title": "09. The Doctor's Opinion - (pp. xxv-xxxii)",
+    "url": "https://www.aa.org/sites/default/files/2021-11/en_bigbook_foreworddoctorsopinion.pdf",
+    "source": "Alcoholics Anonymous World Services",
+    "language": "en",
+    "collection": "The Big Book"
+  },
+  {
+    "id": "bigbook_ch01",
+    "title": "01. Bill's Story - (pp. 1-16)",
+    "url": "https://www.aa.org/sites/default/files/2021-11/en_bigbook_chapt1.pdf",
+    "source": "Alcoholics Anonymous World Services",
+    "language": "en",
+    "collection": "The Big Book"
+  },
+  {
+    "id": "bigbook_ch02",
+    "title": "02. There is a Solution - (pp. 17-29)",
+    "url": "https://www.aa.org/sites/default/files/2021-11/en_bigbook_chapt2.pdf",
+    "source": "Alcoholics Anonymous World Services",
+    "language": "en",
+    "collection": "The Big Book"
+  },
+  {
+    "id": "bigbook_ch03",
+    "title": "03. More About Alcoholism - (pp. 30-43)",
+    "url": "https://www.aa.org/sites/default/files/2021-11/en_bigbook_chapt3.pdf",
+    "source": "Alcoholics Anonymous World Services",
+    "language": "en",
+    "collection": "The Big Book"
+  },
+  {
+    "id": "bigbook_ch04",
+    "title": "04. We Agnostics - (pp. 44-57)",
+    "url": "https://www.aa.org/sites/default/files/2021-11/en_bigbook_chapt4.pdf",
+    "source": "Alcoholics Anonymous World Services",
+    "language": "en",
+    "collection": "The Big Book"
+  },
+  {
+    "id": "bigbook_ch05",
+    "title": "05. How It Works - (pp. 58-71)",
+    "url": "https://www.aa.org/sites/default/files/2021-11/en_bigbook_chapt5.pdf",
+    "source": "Alcoholics Anonymous World Services",
+    "language": "en",
+    "collection": "The Big Book"
+  },
+  {
+    "id": "bigbook_ch06",
+    "title": "06. Into Action - (pp. 72-88)",
+    "url": "https://www.aa.org/sites/default/files/2021-11/en_bigbook_chapt6.pdf",
+    "source": "Alcoholics Anonymous World Services",
+    "language": "en",
+    "collection": "The Big Book"
+  },
+  {
+    "id": "bigbook_ch07",
+    "title": "07. Working With Others - (pp. 89-103)",
+    "url": "https://www.aa.org/sites/default/files/2021-11/en_bigbook_chapt7.pdf",
+    "source": "Alcoholics Anonymous World Services",
+    "language": "en",
+    "collection": "The Big Book"
+  },
+  {
+    "id": "bigbook_ch08",
+    "title": "08. To Wives - (pp. 104-121)",
+    "url": "https://www.aa.org/sites/default/files/2021-11/en_bigbook_chapt8.pdf",
+    "source": "Alcoholics Anonymous World Services",
+    "language": "en",
+    "collection": "The Big Book"
+  },
+  {
+    "id": "bigbook_ch09",
+    "title": "09. The Family Afterward - (pp. 122-135)",
+    "url": "https://www.aa.org/sites/default/files/2021-11/en_bigbook_chapt9.pdf",
+    "source": "Alcoholics Anonymous World Services",
+    "language": "en",
+    "collection": "The Big Book"
+  },
+  {
+    "id": "bigbook_ch10",
+    "title": "10. To Employers - (pp. 136-150)",
+    "url": "https://www.aa.org/sites/default/files/2021-11/en_bigbook_chapt10.pdf",
+    "source": "Alcoholics Anonymous World Services",
+    "language": "en",
+    "collection": "The Big Book"
+  },
+  {
+    "id": "bigbook_ch11",
+    "title": "11. A Vision For You - (pp. 151-164)",
+    "url": "https://www.aa.org/sites/default/files/2021-11/en_bigbook_chapt11.pdf",
+    "source": "Alcoholics Anonymous World Services",
+    "language": "en",
+    "collection": "The Big Book"
+  },
+  {
+    "id": "bigbook_appendix_i",
+    "title": "Appendix I. The A.A. Tradition - (pp. 561-566)",
+    "url": "https://www.aa.org/sites/default/files/2021-11/en_bigbook_appendicei.pdf",
+    "source": "Alcoholics Anonymous World Services",
+    "language": "en",
+    "collection": "The Big Book"
+  },
+  {
+    "id": "bigbook_appendix_ii",
+    "title": "Appendix II. Spiritual Experience - (pp. 567-568)",
+    "url": "https://www.aa.org/sites/default/files/2021-11/en_bigbook_appendiceii.pdf",
+    "source": "Alcoholics Anonymous World Services",
+    "language": "en",
+    "collection": "The Big Book"
+  },
+  {
+    "id": "bigbook_appendix_iii",
+    "title": "Appendix III. The Medical View On A.A. - (pp. 569-570)",
+    "url": "https://www.aa.org/sites/default/files/2021-11/en_bigbook_appendiceiii.pdf",
+    "source": "Alcoholics Anonymous World Services",
+    "language": "en",
+    "collection": "The Big Book"
+  },
+  {
+    "id": "tt_intro",
+    "title": "Introduction - (p. 14)",
+    "url": "https://www.aa.org/sites/default/files/2022-01/en_tt_intro.pdf",
+    "source": "Alcoholics Anonymous World Services",
+    "language": "en",
+    "collection": "Twelve Steps and Twelve Traditions"
+  },
+  {
+    "id": "tt_foreword",
+    "title": "Foreword - (pp. 15-18)",
+    "url": "https://www.aa.org/sites/default/files/2022-01/en_tt_foreword.pdf",
+    "source": "Alcoholics Anonymous World Services",
+    "language": "en",
+    "collection": "Twelve Steps and Twelve Traditions"
+  },
+  {
+    "id": "step01",
+    "title": "Step One - (pp. 21 - 24)",
+    "url": "https://www.aa.org/sites/default/files/2022-01/en_step1.pdf",
+    "source": "Alcoholics Anonymous World Services",
+    "language": "en",
+    "collection": "Twelve Steps and Twelve Traditions"
+  },
+  {
+    "id": "step02",
+    "title": "Step Two - (pp. 25 - 33)",
+    "url": "https://www.aa.org/sites/default/files/2022-01/en_step2.pdf",
+    "source": "Alcoholics Anonymous World Services",
+    "language": "en",
+    "collection": "Twelve Steps and Twelve Traditions"
+  },
+  {
+    "id": "step03",
+    "title": "Step Three - (pp. 34 - 41)",
+    "url": "https://www.aa.org/sites/default/files/2022-01/en_step3.pdf",
+    "source": "Alcoholics Anonymous World Services",
+    "language": "en",
+    "collection": "Twelve Steps and Twelve Traditions"
+  },
+  {
+    "id": "step04",
+    "title": "Step Four - (pp. 42 - 54)",
+    "url": "https://www.aa.org/sites/default/files/2022-01/en_step4.pdf",
+    "source": "Alcoholics Anonymous World Services",
+    "language": "en",
+    "collection": "Twelve Steps and Twelve Traditions"
+  },
+  {
+    "id": "step05",
+    "title": "Step Five - (pp. 55 - 62)",
+    "url": "https://www.aa.org/sites/default/files/2022-01/en_step5.pdf",
+    "source": "Alcoholics Anonymous World Services",
+    "language": "en",
+    "collection": "Twelve Steps and Twelve Traditions"
+  },
+  {
+    "id": "step06",
+    "title": "Step Six - (pp. 63 - 69)",
+    "url": "https://www.aa.org/sites/default/files/2022-01/en_step6.pdf",
+    "source": "Alcoholics Anonymous World Services",
+    "language": "en",
+    "collection": "Twelve Steps and Twelve Traditions"
+  },
+  {
+    "id": "step07",
+    "title": "Step Seven - (pp. 70 - 76)",
+    "url": "https://www.aa.org/sites/default/files/2022-01/en_step7.pdf",
+    "source": "Alcoholics Anonymous World Services",
+    "language": "en",
+    "collection": "Twelve Steps and Twelve Traditions"
+  },
+  {
+    "id": "step08",
+    "title": "Step Eight - (pp. 77 - 82)",
+    "url": "https://www.aa.org/sites/default/files/2022-01/en_step8.pdf",
+    "source": "Alcoholics Anonymous World Services",
+    "language": "en",
+    "collection": "Twelve Steps and Twelve Traditions"
+  },
+  {
+    "id": "step09",
+    "title": "Step Nine - (pp. 83 - 87)",
+    "url": "https://www.aa.org/sites/default/files/2022-01/en_step9.pdf",
+    "source": "Alcoholics Anonymous World Services",
+    "language": "en",
+    "collection": "Twelve Steps and Twelve Traditions"
+  },
+  {
+    "id": "step10",
+    "title": "Step Ten - (pp. 88 - 95)",
+    "url": "https://www.aa.org/sites/default/files/2022-01/en_step10_0.pdf",
+    "source": "Alcoholics Anonymous World Services",
+    "language": "en",
+    "collection": "Twelve Steps and Twelve Traditions"
+  },
+  {
+    "id": "step11",
+    "title": "Step Eleven - (pp. 96 - 105)",
+    "url": "https://www.aa.org/sites/default/files/2022-01/en_step11.pdf",
+    "source": "Alcoholics Anonymous World Services",
+    "language": "en",
+    "collection": "Twelve Steps and Twelve Traditions"
+  },
+  {
+    "id": "step12",
+    "title": "Step Twelve - (pp. 106 - 125)",
+    "url": "https://www.aa.org/sites/default/files/2022-01/en_step12.pdf",
+    "source": "Alcoholics Anonymous World Services",
+    "language": "en",
+    "collection": "Twelve Steps and Twelve Traditions"
+  },
+  {
+    "id": "tradition01",
+    "title": "Tradition One - (pp. 129 - 131)",
+    "url": "https://www.aa.org/sites/default/files/2022-01/en_tradition1.pdf",
+    "source": "Alcoholics Anonymous World Services",
+    "language": "en",
+    "collection": "Twelve Steps and Twelve Traditions"
+  },
+  {
+    "id": "tradition02",
+    "title": "Tradition Two - (pp. 132 - 138)",
+    "url": "https://www.aa.org/sites/default/files/2022-01/en_tradition2.pdf",
+    "source": "Alcoholics Anonymous World Services",
+    "language": "en",
+    "collection": "Twelve Steps and Twelve Traditions"
+  },
+  {
+    "id": "tradition03",
+    "title": "Tradition Three - (pp. 139 - 145)",
+    "url": "https://www.aa.org/sites/default/files/2022-01/en_tradition3.pdf",
+    "source": "Alcoholics Anonymous World Services",
+    "language": "en",
+    "collection": "Twelve Steps and Twelve Traditions"
+  },
+  {
+    "id": "tradition04",
+    "title": "Tradition Four - (pp. 146 - 150)",
+    "url": "https://www.aa.org/sites/default/files/2022-01/en_tradition4_0.pdf",
+    "source": "Alcoholics Anonymous World Services",
+    "language": "en",
+    "collection": "Twelve Steps and Twelve Traditions"
+  },
+  {
+    "id": "tradition05",
+    "title": "Tradition Five - (pp. 151 - 155)",
+    "url": "https://www.aa.org/sites/default/files/2022-01/en_tradition5_0.pdf",
+    "source": "Alcoholics Anonymous World Services",
+    "language": "en",
+    "collection": "Twelve Steps and Twelve Traditions"
+  },
+  {
+    "id": "tradition06",
+    "title": "Tradition Six - (pp. 156 - 160)",
+    "url": "https://www.aa.org/sites/default/files/2022-01/en_tradition6_0.pdf",
+    "source": "Alcoholics Anonymous World Services",
+    "language": "en",
+    "collection": "Twelve Steps and Twelve Traditions"
+  },
+  {
+    "id": "tradition07",
+    "title": "Tradition Seven - (pp. 161 - 167)",
+    "url": "https://www.aa.org/sites/default/files/2022-01/en_tradition7.pdf",
+    "source": "Alcoholics Anonymous World Services",
+    "language": "en",
+    "collection": "Twelve Steps and Twelve Traditions"
+  },
+  {
+    "id": "tradition08",
+    "title": "Tradition Eight - (pp. 168 - 173)",
+    "url": "https://www.aa.org/sites/default/files/2022-01/en_tradition8.pdf",
+    "source": "Alcoholics Anonymous World Services",
+    "language": "en",
+    "collection": "Twelve Steps and Twelve Traditions"
+  },
+  {
+    "id": "tradition09",
+    "title": "Tradition Nine - (pp. 174 - 178)",
+    "url": "https://www.aa.org/sites/default/files/2022-07/Tradition_9_EN.pdf",
+    "source": "Alcoholics Anonymous World Services",
+    "language": "en",
+    "collection": "Twelve Steps and Twelve Traditions"
+  },
+  {
+    "id": "tradition10",
+    "title": "Tradition Ten - (pp. 179 - 182)",
+    "url": "https://www.aa.org/sites/default/files/2022-01/en_tradition10.pdf",
+    "source": "Alcoholics Anonymous World Services",
+    "language": "en",
+    "collection": "Twelve Steps and Twelve Traditions"
+  },
+  {
+    "id": "tradition11",
+    "title": "Tradition Eleven - (pp. 183 - 186)",
+    "url": "https://www.aa.org/sites/default/files/2022-01/en_tradition11.pdf",
+    "source": "Alcoholics Anonymous World Services",
+    "language": "en",
+    "collection": "Twelve Steps and Twelve Traditions"
+  },
+  {
+    "id": "tradition12",
+    "title": "Tradition Twelve - (pp. 187 - 191)",
+    "url": "https://www.aa.org/sites/default/files/2022-01/en_tradition12.pdf",
+    "source": "Alcoholics Anonymous World Services",
+    "language": "en",
+    "collection": "Twelve Steps and Twelve Traditions"
+  },
+  {
+    "id": "tradition_long",
+    "title": "The Twelve Traditions (Long Form) - (pp. 192 - 195)",
+    "url": "https://www.aa.org/sites/default/files/2022-01/en_tradition_longform.pdf",
+    "source": "Alcoholics Anonymous World Services",
+    "language": "en",
+    "collection": "Twelve Steps and Twelve Traditions"
+  }
+]
