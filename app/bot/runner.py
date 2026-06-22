@@ -7,7 +7,7 @@ from aiogram.types import BotCommand, CallbackQuery, FSInputFile, Message
 
 from app.bot.keyboards import inline_keyboard, main_reply_keyboard
 from app.bot.session import cleanup_chat_context, prune_chat_history, remember_bot_message
-from app.bot.state import is_talk_mode, set_chat_mode
+from app.bot.state import is_support_dialogue_mode, is_talk_mode, set_chat_mode
 from app.core.crisis import crisis_reply, is_crisis_text
 from app.core.onboarding import onboarding_buttons, onboarding_start_text, rules_text
 from app.services.literature import literature_reply
@@ -82,9 +82,7 @@ def create_dispatcher() -> Dispatcher:
     @dp.message(F.text.casefold() == "мне плохо / хочу сорваться")
     async def sos(message: Message) -> None:
         await cleanup_chat_context(message)
-        set_chat_mode(message.chat.id, "sos")
-        reply = crisis_reply("ru")
-        await send_clean_text(message, reply.text, reply_markup=main_reply_keyboard())
+        await enter_sos_dialogue(message)
 
     @dp.callback_query(F.data == "accept_rules")
     async def accept_rules(callback: CallbackQuery) -> None:
@@ -104,8 +102,19 @@ def create_dispatcher() -> Dispatcher:
         await cleanup_chat_context(callback.message)
         reply = crisis_reply("ru")
         if callback.message:
-            set_chat_mode(callback.message.chat.id, "sos")
-            await send_clean_text(callback.message, reply.text, reply_markup=main_reply_keyboard())
+            await enter_sos_dialogue(callback.message)
+
+    async def enter_sos_dialogue(message: Message) -> None:
+        set_chat_mode(message.chat.id, "sos")
+        opening = await generate_live_support_reply(
+            message,
+            "Пользователь нажал «Мне плохо / хочу сорваться». Ответь как живой бережный помощник: коротко, спокойно, без диагноза и давления. Спроси один ближайший вопрос и предложи голосом или текстом сказать, что происходит прямо сейчас. Если есть непосредственная опасность — мягко направь к экстренной/живой помощи.",
+        )
+        if opening:
+            await send_text_and_voice(message, opening, reply_markup=main_reply_keyboard())
+        else:
+            reply = crisis_reply("ru")
+            await send_text_and_voice(message, reply.text, reply_markup=main_reply_keyboard())
 
     @dp.callback_query(F.data == "talk")
     async def talk_callback(callback: CallbackQuery) -> None:
@@ -206,8 +215,8 @@ def create_dispatcher() -> Dispatcher:
     @dp.message(F.voice)
     async def voice_message(message: Message) -> None:
         await cleanup_chat_context(message)
-        if not is_talk_mode(message.chat.id):
-            await send_clean_text(message, "Голосом общаемся только в разделе «Просто выговориться». Открой /menu и выбери этот пункт.")
+        if not is_support_dialogue_mode(message.chat.id):
+            await send_clean_text(message, "Голосом можно ответить в разделах «Просто выговориться» и «Мне плохо / хочу сорваться». Нажми нужную кнопку в меню.", reply_markup=main_reply_keyboard())
             return
         text = await transcribe_telegram_voice(message.bot, message.voice)
         if not text:
@@ -232,10 +241,13 @@ def create_dispatcher() -> Dispatcher:
             else:
                 await send_clean_text(message, reply.text, reply_markup=main_reply_keyboard())
             return
-        if is_talk_mode(message.chat.id):
+        if is_support_dialogue_mode(message.chat.id):
             answer = await generate_live_support_reply(message, text, "ru")
             if answer:
-                await send_text_and_voice(message, answer)
+                if is_talk_mode(message.chat.id) or message.text is not None:
+                    await send_text_and_voice(message, answer, reply_markup=main_reply_keyboard())
+                else:
+                    await send_clean_text(message, answer, reply_markup=main_reply_keyboard())
             return
         await send_clean_text(message, "Открой /menu и выбери нужный раздел. Для живого голосового общения выбери «Просто выговориться».", reply_markup=main_reply_keyboard())
 
